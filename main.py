@@ -1,3 +1,4 @@
+import os
 import time
 from datetime import time
 from selenium.webdriver.common.keys import Keys
@@ -8,15 +9,14 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import requests
 from bs4 import BeautifulSoup
-from decouple import config
 
 
 if __name__ == '__main__':
 
     service = Service(executable_path=ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service)
-    email = config('email')
-    password = config('password')
+    email = os.environ['my_email']
+    password = os.environ['my_password']
     driver.get('https://www.j-scorer.com/login')
     driver.find_element(By.NAME, 'session[email]').send_keys(email)
     driver.find_element(By.NAME, 'session[password]').send_keys(password)
@@ -25,4 +25,3 @@ if __name__ == '__main__':
     print(driver.find_element(By.ID, 'topic-area-1'))
     soup = BeautifulSoup(driver.page_source)
     print(soup.text)
-    time.sleep(10)
