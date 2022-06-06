@@ -27,6 +27,11 @@ class GameScraper:
         self.final = False
 
     def scrape_game(self, driver):
+        """Scrapes the entire game.
+
+           Keyword arguments:
+           driver -- the current selenium driver that is being used to scrape. Must already be logged in.
+           """
         driver.get(self.URL)
         self.scrape_round(driver, 1)
         driver.find_element(By.ID, 'round-two-link').click()
@@ -39,6 +44,12 @@ class GameScraper:
         print(self.final)
 
     def scrape_round(self, driver, round_number):
+        """Scrapes an individual round of the game.
+
+           Keyword arguments:
+           driver -- the current selenium driver that is being used to scrape. Must already be logged in.
+           round_number -- 1 for single jeopardy, 2 for double jeopardy. Used to double the scores in double jeopardy.
+           """
         round_coryat = 0
         for i in range(1, 7):
             for j in range(1, 6):
