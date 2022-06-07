@@ -2,20 +2,16 @@
 # number right/wrong
 # coryat / adjusted coryat
 # for wayyy later - category breakdowns.
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-
 
 max_coryat = 54000
 
 
 class GameScraper:
 
-    def __init__(self, URL):
-        self.URL = URL
+    def __init__(self, date):
+        self.date = date
+        self.URL = 'https://j-scorer.com/game?g=' + date
         self.coryat = 0
         self.first_round_coryat = 0
         self.second_round_coryat = 0
@@ -39,9 +35,12 @@ class GameScraper:
         final_right = driver.find_element(By.ID, 'button-final-right')
         if final_right.get_attribute("class") == 'active':
             self.final = True
-        print(str(self.coryat) + ' first: ' + str(self.first_round_coryat) + ' second: ' + str(self.second_round_coryat))
-        print(self.daily_double)
-        print(self.final)
+        self.adjusted_coryat = self.coryat * float(max_coryat)/self.possible_score
+        #print(str(self.coryat) + ' first: ' + str(self.first_round_coryat) + ' second: ' +
+              #str(self.second_round_coryat))
+        print(self.date + ' adjusted coryat: ' + round(self.adjusted_coryat))
+        # print(self.daily_double)
+        # print(self.final)
 
     def scrape_round(self, driver, round_number):
         """Scrapes an individual round of the game.
