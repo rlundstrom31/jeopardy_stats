@@ -1,7 +1,4 @@
-# things to calculate
-# number right/wrong
-# coryat / adjusted coryat
-# for wayyy later - category breakdowns.
+# TODO add categories and subjects to each clue
 from selenium.webdriver.common.by import By
 
 max_coryat = 54000
@@ -35,7 +32,7 @@ class GameScraper:
         final_right = driver.find_element(By.ID, 'button-final-right')
         if final_right.get_attribute("class") == 'active':
             self.final = True
-        self.adjusted_coryat = self.coryat * float(max_coryat)/self.possible_score
+        self.adjusted_coryat = self.coryat * float(max_coryat) / self.possible_score
 
     def scrape_round(self, driver, round_number):
         """Scrapes an individual round of the game.
@@ -66,4 +63,3 @@ class GameScraper:
             self.first_round_coryat = round_coryat
         else:
             self.second_round_coryat = round_coryat
-
