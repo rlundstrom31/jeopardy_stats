@@ -29,8 +29,5 @@ def date_scraper(driver):
             page_length = len(driver.find_elements(By.XPATH, '/html/body/main/div/div[2]/div[1]/div/nav/span'))
             driver.find_element(By.XPATH,
                                 '/html/body/main/div/div[2]/div[1]/div/nav/span[' + str(page_length) + ']/a').click()
-        print(len(date_list))
         time.sleep(1)
-    print(date_list)
-    print(len(date_list))
     return date_list

@@ -36,11 +36,6 @@ class GameScraper:
         if final_right.get_attribute("class") == 'active':
             self.final = True
         self.adjusted_coryat = self.coryat * float(max_coryat)/self.possible_score
-        #print(str(self.coryat) + ' first: ' + str(self.first_round_coryat) + ' second: ' +
-              #str(self.second_round_coryat))
-        print(self.date + ' adjusted coryat: ' + round(self.adjusted_coryat))
-        # print(self.daily_double)
-        # print(self.final)
 
     def scrape_round(self, driver, round_number):
         """Scrapes an individual round of the game.

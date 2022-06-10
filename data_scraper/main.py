@@ -22,9 +22,11 @@ if __name__ == '__main__':
     # logging in now complete - can start scraping games
 
     dates = date_scraper.date_scraper(driver)
-    # for date in dates:
-    #     game = game_scraper.GameScraper(date)
-    #     game.scrape_game(driver)
+    games = list()
+    for date in dates:
+        game = game_scraper.GameScraper(date)
+        game.scrape_game(driver)
+        games.append(game)
 
     # element = driver.find_element(By.ID, 'topic-area-1')
     # print(element.get_attribute("value"))
