@@ -1,8 +1,8 @@
 class Game:
 
-    def __init__(self,date):
-        self.date = date
-        self.URL = 'https://j-scorer.com/game?g=' + date
+    def __init__(self):
+        self.date = ''
+        self.URL = ''
         self.coryat = 0
         self.first_round_coryat = 0
         self.second_round_coryat = 0
