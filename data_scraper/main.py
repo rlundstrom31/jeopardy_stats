@@ -1,5 +1,3 @@
-import date_scraper
-import game_scraper
 import json
 import os
 
@@ -7,6 +5,11 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+
+from data_scraper import date_scraper
+from data_scraper.game import Game
+
+
 
 if __name__ == '__main__':
     options = webdriver.ChromeOptions()
@@ -22,6 +25,7 @@ if __name__ == '__main__':
     driver.find_element(By.NAME, 'commit').click()
     # logging in complete - can start scraping games
 
+    # game scraping code
     dates = date_scraper.date_scraper(driver)
     current_games = os.listdir("../games/")
     known_date_list = [None]*len(current_games)
@@ -31,12 +35,9 @@ if __name__ == '__main__':
         new_name = old_name[0:10]
         known_date_list[i] = new_name
     for date in dates:
-        print(date)
         if date not in known_date_list:
-            game = game_scraper.GameScraper(date)
+            print(date)
+            game = Game(date)
             game.scrape_game(driver)
             with open("../games/" + str(date) + ".json", "w") as write_file:
-                json.dump(game.__dict__, write_file)
-
-    # element = driver.find_element(By.ID, 'topic-area-1')
-    # print(element.get_attribute("value"))
+                json.dump(game, write_file, default=lambda o: o.__dict__)
