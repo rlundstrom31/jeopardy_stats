@@ -1,13 +1,14 @@
 from selenium.webdriver.common.by import By
 
-from data_scraper.clue import Clue
+from scraper.clue import Clue
 
-max_one_round_coryat = 18000
+max_one_category_coryat = 3000
 
 
 class Category:
 
     def __init__(self, round_number, category_number):
+        self.adjusted_coryat = 0
         self.round_number = round_number
         self.category_number = category_number
         self.subjects = list()
@@ -41,3 +42,4 @@ class Category:
                     self.correct_daily_double += 1
                 else:
                     self.daily_double += 1
+        self.adjusted_coryat = self.round_number * self.coryat * max_one_category_coryat / self.possible_coryat

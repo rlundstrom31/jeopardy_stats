@@ -6,10 +6,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
-from data_scraper import date_scraper
-from data_scraper.game import Game
-
-
+from scraper import date_scraper
+from scraper.game import Game
 
 if __name__ == '__main__':
     options = webdriver.ChromeOptions()
@@ -28,7 +26,7 @@ if __name__ == '__main__':
     # game scraping code
     dates = date_scraper.date_scraper(driver)
     current_games = os.listdir("../games/")
-    known_date_list = [None]*len(current_games)
+    known_date_list = [None] * len(current_games)
 
     for i in range(len(current_games)):
         old_name = current_games[i]

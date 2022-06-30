@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
-from data_scraper.final import Final
-from data_scraper.round import Round
+from scraper.final import Final
+from scraper.round import Round
 
 max_coryat = 54000
 
@@ -16,6 +16,7 @@ class Game:
         self.correct_daily_double = 0
         self.final = Final()
         self.rounds = list()
+        self.adjusted_coryat = 0
 
     def scrape_game(self, driver):
         """Scrapes the entire game.
@@ -38,3 +39,4 @@ class Game:
         self.num_correct = round_one.num_correct + round_two.num_correct
         self.num_wrong = round_one.num_wrong + round_two.num_wrong
         self.correct_daily_double = round_one.correct_daily_double + round_two.correct_daily_double
+        self.adjusted_coryat = self.coryat * max_coryat/self.possible_coryat
