@@ -5,6 +5,7 @@ from scraper.round import Round
 
 max_coryat = 54000
 
+
 class Game:
     def __init__(self, date):
         self.date = date
@@ -39,4 +40,4 @@ class Game:
         self.num_correct = round_one.num_correct + round_two.num_correct
         self.num_wrong = round_one.num_wrong + round_two.num_wrong
         self.correct_daily_double = round_one.correct_daily_double + round_two.correct_daily_double
-        self.adjusted_coryat = self.coryat * max_coryat/self.possible_coryat
+        self.adjusted_coryat = self.coryat * max_coryat / self.possible_coryat
